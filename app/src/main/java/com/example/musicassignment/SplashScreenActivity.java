@@ -38,7 +38,7 @@ public class SplashScreenActivity extends AppCompatActivity  {
                 if (switchOfflineMode.isChecked()) {
                     offlineMode = true;
                 }
-                Intent intent = new Intent(SplashScreenActivity.this, TestApiActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
                 intent.putExtra("mode", offlineMode);
                 setResult(RESULT_OK, intent);
                 startActivity(intent);

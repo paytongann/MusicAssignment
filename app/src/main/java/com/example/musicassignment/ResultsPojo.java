@@ -1,9 +1,11 @@
 package com.example.musicassignment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultsPojo {
 
- int results;
- List<ResultItem> resultItem;
+ List<SongPojo> resultItem;
+ public List<SongPojo> getResults(){return resultItem;}
+
 }

@@ -6,18 +6,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
 
-    private ResultsPojo dataSet;
-    private CustomListener listener;
+    List<SongPojo> dataSet;
 
-    public void setDataSet(ResultsPojo dataSet) {
+    public void setDataSet(List<SongPojo> dataSet) {
         this.dataSet = dataSet;
         notifyDataSetChanged();
-    }
-
-    public void setListener(CustomListener listener) {
-        this.listener = listener;
     }
 
     @NonNull
@@ -28,11 +25,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.bindViewHolder(dataSet.resultItem.get(position), listener);
+        holder.setSongTitle(dataSet.get(position).getTrackName());
+        holder.setArtistName(dataSet.get(position).getArtistName());
+        holder.setSongPrice(dataSet.get(position).getTrackPrice());
+        holder.setSongPicture(dataSet.get(position).getArtworkUrl60());
     }
 
     @Override
     public int getItemCount() {
-        return dataSet != null ? dataSet.resultItem.size() : 0;
+        return dataSet != null ? dataSet.size() : 0;
     }
 }

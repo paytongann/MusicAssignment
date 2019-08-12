@@ -12,29 +12,31 @@ import com.squareup.picasso.Picasso;
 public class CustomViewHolder extends RecyclerView.ViewHolder {
 
     ImageView ivAlbumPic;
-    TextView tvSongName, tvAlbumName, tvSongPrice;
+    TextView tvSongName, tvArtistName, tvSongPrice;
 
     public CustomViewHolder(@NonNull View itemView) {
         super(itemView);
         ivAlbumPic = itemView.findViewById(R.id.iv_album_pic);
         tvSongName = itemView.findViewById(R.id.tv_song_name);
-        tvAlbumName = itemView.findViewById(R.id.tv_album_name);
+        tvArtistName = itemView.findViewById(R.id.tv_artist_name);
         tvSongPrice = itemView.findViewById(R.id.tv_song_price);
     }
 
-    public void bindViewHolder(final ResultItem item,
-    final CustomListener listener) {
-        tvSongName.setText(item.songPojo.collectionName);
-        tvAlbumName.setText(item.songPojo.artistName);
-        Picasso.get().load(item.songPojo.artworkUrl60)
+    public void setSongTitle(String titleString) {
+        tvSongPrice.setText(titleString);
+    }
+
+    public void setSongPrice(String priceString) {
+        tvSongPrice.setText(priceString);
+    }
+
+    public void setArtistName(String artistNameString) {
+        tvArtistName.setText(artistNameString);
+    }
+    public void setSongPicture(String urlString){
+        Picasso.get().load(urlString).placeholder(
+                R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
                 .into(ivAlbumPic);
-        String trackPrice = item.songPojo.trackPrice.toString() + "USD";
-        tvSongPrice.setText(trackPrice);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.itemClicked(item);
-            }
-        });
     }
 }
