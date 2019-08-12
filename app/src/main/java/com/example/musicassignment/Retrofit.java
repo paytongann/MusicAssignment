@@ -1,7 +1,6 @@
 package com.example.musicassignment;
 
 import android.content.Context;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,7 +25,7 @@ public class Retrofit {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        apiInterface.getCategory(genre, "music", "song",CONST_RESULTS)
+        apiInterface.getMusic(genre, "music", "song",CONST_RESULTS)
                 .enqueue(new Callback<ResultsPojo>() {
             @Override
             public void onResponse(Call<ResultsPojo> call, Response<ResultsPojo> response) {
@@ -35,7 +34,6 @@ public class Retrofit {
                     MainActivity mainActivity = (MainActivity)context;
                     mainActivity.getResults();
                 }
-
             }
 
             @Override

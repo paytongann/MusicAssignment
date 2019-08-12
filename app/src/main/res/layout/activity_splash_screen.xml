@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Music Player!"
+        android:text="@string/tv_txt_music_player"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="@string/btn_txt_start"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="30dp"/>
@@ -30,7 +30,7 @@
         android:id="@+id/switch_offline_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Offline Mode"
+        android:text="@string/switch_txt_offline_mode"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_start"

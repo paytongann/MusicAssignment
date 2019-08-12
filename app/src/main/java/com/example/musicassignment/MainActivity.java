@@ -1,15 +1,17 @@
 package com.example.musicassignment;
 
 import android.os.Bundle;
-
-import com.google.android.material.tabs.TabLayout;
-import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SongFragment.Communicator {
+public class MainActivity extends AppCompatActivity
+        implements SongFragment.Communicator {
 
+    SongRepository songRepository;
     SongFragment fragment;
     ArrayList<SongFragment> queue = new ArrayList<>();
 
@@ -17,8 +19,7 @@ public class MainActivity extends AppCompatActivity implements SongFragment.Comm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        final ViewPager viewPager = findViewById(R.id.view_pager);
         CustomPagerAdapter pageAdapter = new CustomPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pageAdapter);
 
@@ -37,8 +38,7 @@ public class MainActivity extends AppCompatActivity implements SongFragment.Comm
         popFragment.genre = "pop";
         pageAdapter.addPages(popFragment);
 
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_dashboard_black_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_notifications_black_24dp);
@@ -50,15 +50,15 @@ public class MainActivity extends AppCompatActivity implements SongFragment.Comm
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
+        songRepository = new SongRepository(getApplication());
     }
+
     public void initNetwork(String genre) {
         Retrofit rock = new Retrofit(
                 this);
@@ -68,8 +68,12 @@ public class MainActivity extends AppCompatActivity implements SongFragment.Comm
     public void getResults() {
         fragment.getResults();
         fragment = null;
-        List<SongPojo> songList;
-        songList = Retrofit.musicResult.getResults();
+        List<SongPojo> songsReturned;
+        songsReturned = Retrofit.musicResult.getResults();
+
+        for (SongPojo songPojo : songsReturned){
+            songRepository.insert(songPojo);
+        }
 
         if (queue.size() > 0) {
             queue.get(0).requestSongs();

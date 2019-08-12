@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,10 +19,10 @@ public class SongFragment extends Fragment {
     CustomAdapter adapter;
 
     public interface Communicator{
-
         void requestSongs(String genre, SongFragment fragment);
     }
     Communicator communicator;
+    public SongFragment() {}
 
     public void setCommunicator(Communicator communicator) {
         this.communicator = communicator;
@@ -65,7 +66,7 @@ public class SongFragment extends Fragment {
 
     public void getResults() {
         ResultsPojo resultsPojo = Retrofit.musicResult;
-        adapter.setDataSet(resultsPojo.getResults());
+        adapter.setDataset(resultsPojo.getResults());
     }
 
     public void requestSongs() {

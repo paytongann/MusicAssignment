@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_margin="8dp">
 
     <ImageView
         android:id="@+id/iv_album_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_launcher_background" />
 
@@ -17,8 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_toRightOf="@id/iv_album_pic"
-        android:text="song name"
-        android:textSize="20sp" />
+        android:text="song name" />
 
     <TextView
         android:id="@+id/tv_artist_name"

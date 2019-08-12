@@ -2,37 +2,40 @@ package com.example.musicassignment;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
+    private List<SongPojo> dataset;
 
-    List<SongPojo> dataSet;
-
-    public void setDataSet(List<SongPojo> dataSet) {
-        this.dataSet = dataSet;
+    public void setDataset(List<SongPojo> data){
+        this.dataset = data;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CustomViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false));
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return new CustomViewHolder(
+                LayoutInflater
+                        .from(viewGroup.getContext()).inflate(
+                        R.layout.item_layout,
+                        viewGroup,
+                        false
+                ));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.setSongTitle(dataSet.get(position).getTrackName());
-        holder.setArtistName(dataSet.get(position).getArtistName());
-        holder.setSongPrice(dataSet.get(position).getTrackPrice());
-        holder.setSongPicture(dataSet.get(position).getArtworkUrl60());
+    public void onBindViewHolder(@NonNull CustomViewHolder customViewHolder, int i) {
+        customViewHolder.setTitle(dataset.get(i).getCollectionName());
+        customViewHolder.setBandName(dataset.get(i).getArtistName());
+        customViewHolder.setPrice(dataset.get(i).getTrackPrice());
+        customViewHolder.setSongPicture(dataset.get(i).getArtworkUrl60());
     }
 
     @Override
     public int getItemCount() {
-        return dataSet != null ? dataSet.size() : 0;
+        return dataset != null ? dataset.size() : 0;
     }
 }
