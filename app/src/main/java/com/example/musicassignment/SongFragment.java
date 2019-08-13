@@ -1,6 +1,7 @@
 package com.example.musicassignment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,7 @@ public class SongFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        changeColor();
         requestSongs();
     }
 
@@ -71,5 +73,15 @@ public class SongFragment extends Fragment {
 
     public void requestSongs() {
         communicator.requestSongs(genre, this);
+    }
+
+    public void changeColor(){
+        if (genre.equals("rock")){
+            recyclerView.setBackgroundColor(Color.RED);
+        } else if (genre.equals("pop")){
+            recyclerView.setBackgroundColor(Color.GREEN);
+        } else if (genre.equals("classic")){
+            recyclerView.setBackgroundColor(Color.BLUE);
+        }
     }
 }

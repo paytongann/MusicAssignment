@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity
     SongRepository songRepository;
     SongFragment fragment;
     ArrayList<SongFragment> queue = new ArrayList<>();
-    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity
         final ViewPager viewPager = findViewById(R.id.view_pager);
         CustomPagerAdapter pageAdapter = new CustomPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pageAdapter);
-        recyclerView = findViewById(R.id.recycler_view);
 
         SongFragment rockFragment = new SongFragment();
         rockFragment.setCommunicator(this);
@@ -56,14 +54,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                //todo change background colors based on tab position
-                if (tab.getText().toString().equals("classic")){
-
-                } else if (tab.getText().toString().equals("pop")){
-
-                } else {
-
-                }
             }
 
             @Override
